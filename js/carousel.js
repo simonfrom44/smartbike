@@ -59,7 +59,7 @@ function Carousel(element)
         $(window).on("load resize orientationchange", function() {
             setPaneDimensions();
             //updateOffset();
-        })
+        });
     };
 
 
