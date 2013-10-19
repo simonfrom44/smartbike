@@ -60,21 +60,20 @@ var app = {
                 ) {
                 alert(device.address);
                 app.deviceAddress = device.address;
-//                bluetoothSerial.connect(device.address, app.connectSuccess, app.connectFailure);
             }
        });
     },
     vkconnect : function(){
         alert(app.deviceAddress);
         alert('vkconnect');
-        bluetoothSerial.isConnected(app.vkvkconnect, app.vkvkdisconnect);
-//        bluetoothSerial.connect(app.deviceAddress, app.connectSuccess, app.connectFailure);
+        bluetoothSerial.isConnected(app.isconnectedSuccess, app.isconnectedFailure);
     },
-    vkvkconnect : function(){
-        alert('vkvkconnect');
+    isconnectedSuccess : function(){
+        alert('isconnectedSuccess');
     },
-    vkvkdisconnect : function(){
-        alert('vkvkdisconnect');
+    isconnectedFailure : function(){
+        alert('isconnectedFailure');
+        bluetoothSerial.connect(app.deviceAddress, app.connectSuccess, app.connectFailure);
     },
     listFailure : function(data){
         alert('listFailure');
