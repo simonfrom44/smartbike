@@ -154,7 +154,3 @@ function Carousel(element)
     element.hammer({ drag_lock_to_axis: true })
         .on("release dragleft dragright swipeleft swiperight", handleHammer);
 }
-
-
-var carousel = new Carousel("#carousel");
-carousel.init();
