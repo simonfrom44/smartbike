@@ -8,8 +8,12 @@
   </head>
 
   <body>
+      <div id="slider">
+	     <label></label><input style="display:none;" type="text" value="9.0" class="slideControl" />
+      </div>
 
     <div id="carousel">
+
       <ul>
         <li class="accueil" data-test="foo">
           <div class="image">
@@ -32,13 +36,6 @@
               <img class="off" src="img/bouton-01.png">
               <img class="on" src="img/bouton-02.png">
             </div>
-            <div class="slider">
-              <ul>
-	            <li><label>Responsiveness: </label><input type="text" value="6.0" class="slideControl" /></li>
-	            <li><label>Safety: </label><input type="text" value="4.0" class="slideControl" /></li>
-	            <li><label>Information: </label><input type="text" value="9.0" class="slideControl" /></li>
-              </ul>
-            </div>
         </li>
       </ul>
     </div>
@@ -46,7 +43,7 @@
     <script src="cordova.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.hammer.js"></script>
-    <script src="js/jquery.slideControl.min.js"></script>
+    <script src="js/jquery.slideControl.js"></script>
     <script src="js/carousel.js"></script>
     <script src="js/interaction.js"></script>
     <script src="js/index.js"></script>

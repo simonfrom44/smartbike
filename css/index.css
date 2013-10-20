@@ -123,6 +123,19 @@ html, body, #carousel, #carousel ul, #carousel li {
 	bottom: 0;
 }
 
+#slider.active.toShow {
+    z-index: 1;
+}
+
+#slider {
+    position: absolute;
+    bottom: 50px;
+    width: 340px;
+    margin-left: -170px;
+    left: 50%;
+    z-index: -1;
+}
+
 p.verticalCentered {
 	text-align: center;
 	color: white;

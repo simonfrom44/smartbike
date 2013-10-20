@@ -15,3 +15,7 @@ var app = {
 };
 
 app.initialize();
+
+jQuery(document).ready(function() {
+	jQuery('.slideControl').slideControl();
+});

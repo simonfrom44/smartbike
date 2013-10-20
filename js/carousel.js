@@ -86,6 +86,12 @@ function Carousel(element)
 
         var offset = -((100/pane_count)*current_pane);
         setContainerOffset(offset, true);
+
+        if (current_pane == 3) {
+            jQuery("#slider").addClass("toShow");
+        } else {
+            jQuery("#slider").removeClass("toShow");
+        }
     };
 
     function setContainerOffset(percent, animate) {
@@ -154,3 +160,6 @@ function Carousel(element)
     element.hammer({ drag_lock_to_axis: true })
         .on("release dragleft dragright swipeleft swiperight", handleHammer);
 }
+
+var carousel = new Carousel("#carousel");
+carousel.init();
