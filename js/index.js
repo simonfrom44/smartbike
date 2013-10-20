@@ -17,79 +17,85 @@
  * under the License.
  */
 var app = {
-    // Application Constructor
+    devices : [],
+    listedDevices : '',
     initialize: function() {
         this.bindEvents();
     },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        alert('onDeviceReady');
         app.receivedEvent('deviceready');
-        bluetoothSerial.list(app.listSuccess, app.listFailure);
-
-        var el = document.getElementById("connecter"); 
-        el.addEventListener("click", app.vkconnect, false); 
-
-//            bluetoothSerial.connect(macAddress_or_uuid, app.connectSuccess, app.connectFailure);
+        window.bluetooth.startDiscovery(app.onDeviceDiscovered,app.onDiscoveryFinished,app.onstartDiscoveryError)
+        jQuery('#sendData').on('click', function(){
+            app.sendData();
+        });
+        jQuery('#isConnected').on('click', function(){
+            app.isConnected();
+        });
+        jQuery('#startConnectionManager').on('click', function(){
+            window.bluetooth.startConnectionManager(app.onDataRead, app.startConnectionManagerError)
+        })
     },
-    deviceAddress : '',
-    listSuccess : function(devices){
-        alert('listSuccess');
-        devices.forEach(function(device) {                      
-            if (device.hasOwnProperty("uuid")) {
-                alert('uuid: ' + device.uuid);
-            }
-            if (device.hasOwnProperty("address")) {
-                alert('address: ' + device.address);
-            }
-            if (device.hasOwnProperty("name")) {
-                alert('name: ' + device.name);
-            }
-            if (
-                device.name == 'Note2 Agathe'
-                ) {
-                alert(device.address);
-                app.deviceAddress = device.address;
-            }
-       });
+    onDeviceDiscovered : function(device){        
+        alert(JSON.stringify(device));
+        app.devices.push(device);
     },
-    vkconnect : function(){
-        alert(app.deviceAddress);
-        alert('vkconnect');
-        bluetoothSerial.isConnected(app.isconnectedSuccess, app.isconnectedFailure);
+    onDiscoveryFinished : function(){
+        app.devices.forEach(function(device){
+            app.listedDevices += '<div class="device" data-address="' + device.address + '">';
+            app.listedDevices += 'address: ' + device.address + '<br />';
+            app.listedDevices += 'name: ' + device.name;
+            app.listedDevices += '</div>';
+        });
+        jQuery('#deviceContainer').html(app.listedDevices);
+        jQuery('#deviceContainer .device').on('click', function(){
+            var thisAddress = jQuery(this).attr('data-address');
+            alert(thisAddress);
+            var thisUuid = window.bluetooth.getUuids(app.onGetUuidsSuccess,app.onGetUuidsError,thisAddress)
+        });
     },
-    isconnectedSuccess : function(){
-        alert('isconnectedSuccess');
+    onstartDiscoveryError:function(boom){
+        alert(JSON.stringify(boom));
     },
-    isconnectedFailure : function(){
-        alert('isconnectedFailure');
-        bluetoothSerial.connect(app.deviceAddress, app.connectSuccess, app.connectFailure);
+    onGetUuidsSuccess : function(uuid){
+        alert('onGetUuidsSuccess');
+        alert(JSON.stringify(uuid));
+        window.bluetooth.connect(app.onConnectSuccess,app.onConnectError, {
+            address: uuid.address,
+            uuid: uuid.uuids[0]
+        });
     },
-    listFailure : function(data){
-        alert('listFailure');
+    onGetUuidsError : function(){
+        alert('onGetUuidsError')
     },
-    connectSuccess : function(data){
-        alert('connectSuccess');
+    onConnectSuccess : function(){
+        alert('onConnectSuccess');
     },
-    connectFailure: function(reason) {
-        var details = "";
-        if (reason) {
-            details += ": " + JSON.stringify(reason);
-        }
-        alert('connectFailure');
-        alert(details);
+    onConnectError : function(){
+        alert('onConnectError')
     },
-    // Update DOM on a Received Event
+    onDataRead : function(data){
+        alert('onDataRead');
+        alert(data);        
+    },
+    isConnected : function(){
+        alert('isConnected');
+        window.bluetooth.isConnected(app.onIsConnectedSuccess, app.onIsConnectedError)
+    },
+    startConnectionManagerError : function(){
+        alert('startConnectionManagerError')        
+    },
+    sendData : function() {
+        window.bluetooth.write(app.onSendDataSuccess, app.onSendDataError, 'bonjour');
+    },
+    onSendDataSuccess : function() {
+        alert('onSendDataSuccess')        
+    },
+    onSendDataError : function() {
+        alert('onSendDataError')        
+    },
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
