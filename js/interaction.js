@@ -1,6 +1,6 @@
 (function(jQuery) {
 
-	jQuery(".light .button").on("click",function(){
+	jQuery(".light .button img").on("click",function(){
 		jQuery(".light").toggleClass("active");
 
 
