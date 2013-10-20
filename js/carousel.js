@@ -95,16 +95,8 @@ function Carousel(element)
             container.addClass("animate");
         }
 
-        if(Modernizr.csstransforms3d) {
-            container.css("transform", "translate3d("+ percent +"%,0,0) scale3d(1,1,1)");
-        }
-        else if(Modernizr.csstransforms) {
-            container.css("transform", "translate("+ percent +"%,0)");
-        }
-        else {
-            var px = ((pane_width*pane_count) / 100) * percent;
-            container.css("left", px+"px");
-        }
+        var px = ((pane_width*pane_count) / 100) * percent;
+        container.css("left", px+"px");
     }
 
     this.next = function() { return this.showPane(current_pane+1, true); };
