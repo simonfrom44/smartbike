@@ -13,3 +13,5 @@ var app = {
         carousel.init();
     }
 };
+
+app.initialize();
