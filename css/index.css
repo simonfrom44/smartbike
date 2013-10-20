@@ -73,3 +73,28 @@ html, body, #carousel, #carousel ul, #carousel li {
 #carousel li.pane4 { background: #cd74e6; }
 #carousel li.pane5 { background: #9fe1e7; }
 
+.light .on {
+	display: none;
+}
+
+.light.active .on {
+	display: block;
+}
+
+.light.active img.on {
+	display: inline;
+}
+
+.light.active .off {
+	display: none;
+}
+
+#carousel li .image {
+	width: 80%;
+	margin: 0 10%;
+	text-align: center;
+}
+
+#carousel li .image img {
+	max-width: 100%;
+}
