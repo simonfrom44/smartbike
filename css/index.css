@@ -6,6 +6,11 @@ html, body, #carousel, #carousel ul, #carousel li {
 	position: relative;
 }
 
+@font-face {
+	font-family: Futura-CondensedLight;
+	src: url(fonts/Futura-CondensedLight.otf);
+}
+
 #debug {
 	position: fixed;
 	background: #fff;
@@ -67,11 +72,10 @@ html, body, #carousel, #carousel ul, #carousel li {
 	text-shadow: -1px -1px 0 rgba(0,0,0,.2);
 }
 
-#carousel li.accueil { background: #42d692; }
-#carousel li.battery { background: #4986e7; }
-#carousel li.pane3 { background: #d06b64; }
-#carousel li.pane4 { background: #cd74e6; }
-#carousel li.pane5 { background: #9fe1e7; }
+#carousel li.accueil { background: #3E4149; }
+#carousel li.battery { background: #3E4149; }
+#carousel li.speed-meter { background: #E95B57; }
+#carousel li.light { background: #38B5A8; }
 
 .light .on {
 	display: none;
@@ -97,4 +101,31 @@ html, body, #carousel, #carousel ul, #carousel li {
 
 #carousel li .image img {
 	max-width: 100%;
+}
+
+.batterylevel {
+	background: #E95B57;
+	width: 100%;
+	position: absolute;
+	top: 82%;
+	bottom: 0;
+}
+
+p {
+	text-align: center;
+	color: white;
+	font-family: Futura-CondensedLight;
+	font-size: 150px;
+	top: 50%;
+	padding-right: 20px;
+	position: relative;
+	margin-top: -75px;
+	height: 150px;
+	line-height: 1;
+}
+
+span {
+	font-size: 75px;
+	position: absolute;
+	top: 0;
 }
