@@ -43,11 +43,11 @@
 			var containerWidth = container.outerWidth() + 1;
 			var handleWidth = $(handle).outerWidth();
 			var offset = $(container).offset();
-			var animate = function(value){$(fill).animate({ width: value + "%"}, o.speed);}
+			var animate = function(value){$(fill).animate({ width: value + "%"}, o.speed);};
 			
 			$(window).resize(function() {
 				offset = $(container).offset();
-			})
+			});
 			
 			//adds shadow class to handle for IE <9
 			if (getInternetExplorerVersion() < 9 && getInternetExplorerVersion() > -1) {
@@ -61,6 +61,7 @@
 				
 				animate(position);
 				$(input).val(position/10);
+                $("body").trigger("sliderChange");
 			});
 			
 			// when user clicks handle
@@ -73,6 +74,7 @@
 					if (controller) {	
 						$(fill).width(position + "%");
 						$(input).val(position/10);
+                        $("body").trigger("sliderChange");
 					}
 				});
 				$(document).mouseup(function() {
@@ -88,6 +90,7 @@
 					$(input).val(o.upperBound);
 				else if ($(this).val() < o.lowerBound)
 					$(input).val(o.lowerBound);
+                $("body").trigger("sliderChange");
 				animate(value);
 			});
 			

@@ -3,6 +3,11 @@
 	jQuery(".light .button img").on("click",function(){
 		jQuery(".light").toggleClass("active");
         jQuery("#slider").toggleClass("active");
+        jQuery("body").on("sliderChange", function(){
+            var slider_val = jQuery("#slider input").val() / 10;
+            console.log(slider_val);
+            jQuery(".ampoule .on").css("opacity", slider_val);
+        });
 	});
 	batteryChange(15);
 
