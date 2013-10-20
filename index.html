@@ -11,13 +11,18 @@
 
     <div id="carousel">
       <ul>
-        <li class="accueil" data-test="foo"><img src="img/accueil.jpg"></li>
+        <li class="accueil" data-test="foo">
+          <div class="image">
+            <img src="img/home.jpg">
+          </div>
+        </li>
         <li class="battery">
           <div class="batterylevel" id="batteryLevel"></div>
-          <p id="batteryValue">18<span>%</span></p>
+          <p id="batteryValue" class="verticalCentered">18<span>%</span></p>
         </li>
-        <li class="battery"><img src="img/battery-high.jpg"></li>
-        <li class="speed-meter"><img src="img/speed-meter.jpg"></li>
+        <li class="speed-meter">
+          <p id="kmValue" class="verticalCentered">42<span>km</span></p>
+        </li>
         <li class="light">
             <div class="image">
               <img src="img/ampoule-03.png" class="off">

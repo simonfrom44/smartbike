@@ -74,7 +74,15 @@ html, body, #carousel, #carousel ul, #carousel li {
 
 #carousel li.accueil { background: #3E4149; }
 #carousel li.battery { background: #3E4149; }
-#carousel li.speed-meter { background: #E95B57; }
+#carousel li.speed-meter {
+	background: url('../img/km-loader.png') center center no-repeat #E95B57;	
+	background-size: 300px 300px;
+}
+@media (min-width: 500px) {
+	#carousel li.speed-meter {
+		background-size: 450px 450px;
+	}	
+}
 #carousel li.light { background: #38B5A8; }
 
 .light .on {
@@ -93,14 +101,18 @@ html, body, #carousel, #carousel ul, #carousel li {
 	display: none;
 }
 
+#carousel li {
+	padding: 0;
+}
 #carousel li .image {
 	width: 80%;
-	margin: 0 10%;
+	margin: 5% 10%;
 	text-align: center;
 }
 
 #carousel li .image img {
 	max-width: 100%;
+	max-height: 100%;
 }
 
 .batterylevel {
@@ -111,7 +123,7 @@ html, body, #carousel, #carousel ul, #carousel li {
 	bottom: 0;
 }
 
-p {
+p.verticalCentered {
 	text-align: center;
 	color: white;
 	font-family: Futura-CondensedLight;
@@ -123,8 +135,10 @@ p {
 	height: 150px;
 	line-height: 1;
 }
-
-span {
+p.verticalCentered.higher {
+	margin-top: -175px;
+}
+p.verticalCentered span {
 	font-size: 75px;
 	position: absolute;
 	top: 0;
